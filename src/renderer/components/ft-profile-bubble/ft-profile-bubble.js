@@ -18,6 +18,10 @@ export default Vue.extend({
     textColor: {
       type: String,
       required: true
+    },
+    profileImg: {
+      type: Image,
+      required: false
     }
   },
   computed: {

@@ -35,6 +35,7 @@ export default Vue.extend({
       profileName: '',
       profileBgColor: '',
       profileTextColor: '',
+      profileImg: null,
       profileSubscriptions: [],
       deletePromptValues: [
         'yes',
@@ -74,12 +75,16 @@ export default Vue.extend({
   watch: {
     profileBgColor: function (val) {
       this.profileTextColor = calculateColorLuminance(val)
+    },
+    profileImg: function (img) {
+      this.profileImg = img
     }
   },
   created: function () {
     this.profileId = this.$route.params.id
     this.profileName = this.profile.name
     this.profileBgColor = this.profile.bgColor
+    this.profileImg = this.profile.profileImg
     this.profileTextColor = this.profile.textColor
   },
   methods: {
@@ -104,6 +109,7 @@ export default Vue.extend({
         name: this.profileName,
         bgColor: this.profileBgColor,
         textColor: this.profileTextColor,
+        profileImg: this.profileImg,
         subscriptions: this.profile.subscriptions
       }
 
