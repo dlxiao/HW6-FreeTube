@@ -18,6 +18,7 @@
           <input
             type="file"
             class="default-upload"
+            @click = "profilePicturePresent = true"
             @change="profilePictureUpload"
           >
         </ft-button>
@@ -31,7 +32,7 @@
           :key="index"
           class="colorOption"
           :style="{ background: color }"
-          @click="profileBgColor = color"
+          @click="profileColorChange(color)"
         />
       </ft-flex-box>
       <ft-flex-box
@@ -59,7 +60,7 @@
       <ft-flex-box
         class="bottomMargin"
       >
-        <div v-if="profilePicture">
+        <div v-if="profilePicturePresent">
           <img
             :src="profilePicture"
             class="colorOption"

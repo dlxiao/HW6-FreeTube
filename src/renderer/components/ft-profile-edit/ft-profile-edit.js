@@ -8,6 +8,7 @@ import FtButton from '../../components/ft-button/ft-button.vue'
 import { MAIN_PROFILE_ID } from '../../../constants'
 import { calculateColorLuminance, colors } from '../../helpers/colors'
 import { showToast } from '../../helpers/utils'
+import { throwDeprecation } from 'process'
 
 export default Vue.extend({
   name: 'FtProfileEdit',
@@ -34,7 +35,8 @@ export default Vue.extend({
       profileId: '',
       profileName: '',
       profileBgColor: '',
-      profilePicture: null,
+      profilePicturePresent: false,
+      profilePicture: '',
       profileTextColor: '',
       profileSubscriptions: [],
       deletePromptValues: [
@@ -83,6 +85,7 @@ export default Vue.extend({
   created: function () {
     this.profileId = this.$route.params.id
     this.profileName = this.profile.name
+    this.profilePicturePresent = this.profile.picturePresent
     this.profilePicture = this.profile.picture
     this.profileBgColor = this.profile.bgColor
     this.profileTextColor = this.profile.textColor
@@ -164,8 +167,14 @@ export default Vue.extend({
     ]),
 
     profilePictureUpload: function (event) {
+      this.profilePicturePresent = true
       const file = event.target.files[0]
       this.profilePicture = URL.createObjectURL(file)
+    },
+
+    profileColorChange: function (color) {
+      this.profilePicturePresent = false
+      this.profileBgColor = color
     }
   }
 })

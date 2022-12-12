@@ -3,7 +3,14 @@
     class="bubblePadding"
     @click="goToProfile"
   >
-    <div
+    <div v-if="picture">
+        <img
+            :src="picture"
+            class="bubble"
+            contain
+          >
+    </div>
+    <div v-else
       class="bubble"
       :style="{ background: backgroundColor, color: textColor }"
     >

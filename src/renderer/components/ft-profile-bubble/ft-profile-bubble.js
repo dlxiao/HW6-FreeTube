@@ -21,8 +21,7 @@ export default Vue.extend({
     },
     picture: {
       type: String,
-      required: false,
-      default: ''
+      required: true,
     }
   },
   computed: {
