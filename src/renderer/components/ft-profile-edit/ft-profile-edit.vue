@@ -19,7 +19,7 @@
             type="file"
             class="default-upload"
             @change="profilePictureUpload"
-          />
+          >
         </ft-button>
       </ft-flex-box>
       <h3>{{ $t("Profile.Color Picker") }}</h3>
@@ -59,7 +59,15 @@
       <ft-flex-box
         class="bottomMargin"
       >
+        <div v-if="profilePicture">
+          <img
+            :src="profilePicture"
+            class="colorOption"
+            contain
+          >
+        </div>
         <div
+          v-else
           class="colorOption"
           :style="{ background: profileBgColor, color: profileTextColor }"
           style="cursor: default"

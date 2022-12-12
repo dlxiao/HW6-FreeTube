@@ -18,4 +18,4 @@
 </template>
 
 <script src="./ft-profile-bubble.js" />
-<style scoped src="./ft-profile-bubble.css" />
+<style scoped src="./ft-profile-bubble.css" /> -->

@@ -20,8 +20,9 @@ export default Vue.extend({
       required: true
     },
     picture: {
-      type: Image,
-      required: false
+      type: String,
+      required: false,
+      default: ''
     }
   },
   computed: {
