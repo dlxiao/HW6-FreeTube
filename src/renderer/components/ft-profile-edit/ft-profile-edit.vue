@@ -52,8 +52,7 @@
           v-if="hasProfileImage"
           class="colorOption"
           :style="{ backgroundImage: profileImageUrl }"
-        >
-        </div>
+        />
         <div
           v-else
           class="colorOption"

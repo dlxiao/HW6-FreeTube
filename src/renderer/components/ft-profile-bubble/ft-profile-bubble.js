@@ -21,6 +21,7 @@ export default Vue.extend({
     },
     profileImageUrl: {
       type: String,
+      default: '',
       required: false
     }
   },

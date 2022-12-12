@@ -7,8 +7,7 @@
       v-if="hasProfileImage"
       class="bubble"
       :style="{ backgroundImage: profileImageUrl }"
-    >
-    </div>
+    />
     <div
       v-else
       class="bubble"
