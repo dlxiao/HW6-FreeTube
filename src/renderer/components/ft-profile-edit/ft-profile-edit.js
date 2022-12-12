@@ -9,6 +9,7 @@ import { MAIN_PROFILE_ID } from '../../../constants'
 import { calculateColorLuminance, colors } from '../../helpers/colors'
 import { showToast } from '../../helpers/utils'
 import { throwDeprecation } from 'process'
+import { threadId } from 'worker_threads'
 
 export default Vue.extend({
   name: 'FtProfileEdit',
@@ -77,9 +78,6 @@ export default Vue.extend({
   watch: {
     profileBgColor: function (val) {
       this.profileTextColor = calculateColorLuminance(val)
-    },
-    profilePicture: function (img) {
-      this.profilePicture = img
     }
   },
   created: function () {
@@ -111,6 +109,7 @@ export default Vue.extend({
       const profile = {
         name: this.profileName,
         bgColor: this.profileBgColor,
+        picturePresent: this.picturePresent,
         picture: this.profilePicture,
         textColor: this.profileTextColor,
         subscriptions: this.profile.subscriptions

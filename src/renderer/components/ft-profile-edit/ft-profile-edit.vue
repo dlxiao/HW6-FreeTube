@@ -18,7 +18,7 @@
           <input
             type="file"
             class="default-upload"
-            @click = "profilePicturePresent = true"
+            @click="profilePicturePresent = true"
             @change="profilePictureUpload"
           >
         </ft-button>

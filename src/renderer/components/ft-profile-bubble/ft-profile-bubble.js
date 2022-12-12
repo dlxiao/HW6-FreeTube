@@ -19,9 +19,13 @@ export default Vue.extend({
       type: String,
       required: true
     },
+    picturePresent: {
+      type: Boolean,
+      required: true
+    },
     picture: {
       type: String,
-      required: true,
+      required: true
     }
   },
   computed: {
