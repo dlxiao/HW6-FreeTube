@@ -4,6 +4,13 @@
     @click="goToProfile"
   >
     <div
+      v-if="hasProfileImage"
+      class="bubble"
+      :style="{ backgroundImage: profileImageUrl }"
+    >
+    </div>
+    <div
+      v-else
       class="bubble"
       :style="{ background: backgroundColor, color: textColor }"
     >

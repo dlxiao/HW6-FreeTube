@@ -1,6 +1,15 @@
 <template>
   <div>
     <div
+      v-if="hasProfileImage"
+      class="colorOption"
+      :style="{ backgroundImage: activeProfile.imageUrl }"
+      @click="toggleProfileList"
+      @mousedown="handleIconMouseDown"
+    >
+    </div>
+    <div
+      v-else
       class="colorOption"
       :style="{ background: activeProfile.bgColor, color: activeProfile.textColor }"
       @click="toggleProfileList"
@@ -39,6 +48,13 @@
           @click="setActiveProfile(profile)"
         >
           <div
+            v-if="hasProfileImage"
+            class="colorOption"
+            :style="{ backgroundImage: profile.imageUrl }"
+          >
+          </div>
+          <div
+            v-else
             class="colorOption"
             :style="{ background: profile.bgColor, color: profile.textColor }"
           >
