@@ -3,7 +3,7 @@
     <div
       v-if="hasProfileImage"
       class="colorOption"
-      :style="{ backgroundImage: activeProfile.imageUrl }"
+      :style="{ backgroundImage: `url(${activeProfile.imageUrl})` }"
       @click="toggleProfileList"
       @mousedown="handleIconMouseDown"
     />
@@ -49,7 +49,7 @@
           <div
             v-if="hasProfileImage"
             class="colorOption"
-            :style="{ backgroundImage: profile.imageUrl }"
+            :style="{ backgroundImage: `url(${profile.imageUrl})` }"
           />
           <div
             v-else

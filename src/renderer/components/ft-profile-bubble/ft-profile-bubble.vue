@@ -6,7 +6,7 @@
     <div
       v-if="hasProfileImage"
       class="bubble"
-      :style="{ backgroundImage: profileImageUrl }"
+      :style="{ backgroundImage: `url(${profileImageUrl})` }"
     />
     <div
       v-else

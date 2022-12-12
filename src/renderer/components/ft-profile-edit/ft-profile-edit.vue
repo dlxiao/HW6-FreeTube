@@ -51,7 +51,7 @@
         <div
           v-if="hasProfileImage"
           class="colorOption"
-          :style="{ backgroundImage: profileImageUrl }"
+          :style="{ backgroundImage: `url(${profileImageUrl})` }"
         />
         <div
           v-else
