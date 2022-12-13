@@ -106,6 +106,7 @@ export default Vue.extend({
         showToast(this.$t('Profile.Your profile name cannot be empty'))
         return
       }
+      alert(this.profileImageUrl)
       const profile = {
         name: this.profileName,
         bgColor: this.profileBgColor,
@@ -165,34 +166,31 @@ export default Vue.extend({
     ]),
 
     profileImageUpload: function (event) {
-      console.log("hello")
-      console.log(event.target.files[0])
       const file = event.target.files[0]
-      const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png']
+      // const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png']
 
-      if (file && acceptedImageTypes.includes(file.type)) {
-        this.profileImageUrl = URL.createObjectURL(file)
-      }
-      else {
-        showToast(this.$t('Profile.File upload not successful'))
-      }
-      return
+      // if (file && acceptedImageTypes.includes(file.type)) {
+      //   this.profileImageUrl = URL.createObjectURL(file)
+      // }
+      // else {
+      //   showToast(this.$t('Profile.File upload not successful'))
+      // }
+      // return
       if (file.size > 64000) {
         showToast(this.$t('Profile image must be smaller than 64KB'))
         return
       }
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
       reader.onload = function () {
-        console.log(reader.result);
-        this.profileImageUrl = reader.result.toString()
-        this.profileBgColor = "#FFFFFF"
+        this.profileImageUrl = reader.result
+        this.profileBgColor = '#FFFFFF'
         // console.log(this.profileImageUrl)
-      };
-      reader.onerror = function (error) {
-        console.log('Error: ', error);
-        return
-      };
+        // console.log(this.profileImageUrl.toString())
+      }
+      // reader.onerror = function (error) {
+      //   console.log('Error: ', error)
+      // }
     }
   }
 })
