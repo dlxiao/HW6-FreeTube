@@ -60,12 +60,12 @@
         class="bottomMargin"
       >
         <div
-          v-if="hasProfileImage"
+          v-if="hasProfilePicture"
           class="colorOption"
           :style="{ backgroundImage: `url(${profileImageUrl})` }"
         />
         <div
-          v-else
+          v-if="!hasProfilePicture"
           class="colorOption"
           :style="{ background: profileBgColor, color: profileTextColor }"
           style="cursor: default"

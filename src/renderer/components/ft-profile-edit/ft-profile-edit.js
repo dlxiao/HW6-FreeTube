@@ -35,6 +35,7 @@ export default Vue.extend({
       profileName: '',
       profileBgColor: '',
       profileTextColor: '',
+      hasProfilePicture: false,
       profileImageUrl: '',
       profileSubscriptions: [],
       deletePromptValues: [
@@ -52,10 +53,6 @@ export default Vue.extend({
     },
     profileInitial: function () {
       return this?.profileName?.length > 0 ? Array.from(this.profileName)[0].toUpperCase() : ''
-    },
-    hasProfileImage: function () {
-      // the profile image url should both exist and be a non-empty string
-      return this?.profileImageUrl && this.profileImageUrl?.length > 0
     },
     profileList: function () {
       return this.$store.getters.getProfileList
@@ -79,13 +76,17 @@ export default Vue.extend({
   watch: {
     profileBgColor: function (val) {
       this.profileTextColor = calculateColorLuminance(val)
-    }
+    },
+    profileImageUrl: function () {
+      this.hasProfilePicture = this?.profileImageUrl && this.profileImageUrl?.length > 0
+    },
   },
   created: function () {
     this.profileId = this.$route.params.id
     this.profileName = this.profile.name
     this.profileBgColor = this.profile.bgColor
     this.profileTextColor = this.profile.textColor
+    this.hasProfilePicture = this.profile.hasProfilePicture
     this.profileImageUrl = this.profile.imageUrl
   },
   methods: {
@@ -106,7 +107,6 @@ export default Vue.extend({
         showToast(this.$t('Profile.Your profile name cannot be empty'))
         return
       }
-      alert(this.profileImageUrl)
       const profile = {
         name: this.profileName,
         bgColor: this.profileBgColor,
@@ -167,27 +167,21 @@ export default Vue.extend({
 
     profileImageUpload: function (event) {
       const file = event.target.files[0]
-      // const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png']
 
-      // if (file && acceptedImageTypes.includes(file.type)) {
-      //   this.profileImageUrl = URL.createObjectURL(file)
-      // }
-      // else {
-      //   showToast(this.$t('Profile.File upload not successful'))
-      // }
-      // return
       if (file.size > 64000) {
         showToast(this.$t('Profile image must be smaller than 64KB'))
         return
       }
+      
       const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = function () {
-        this.profileImageUrl = reader.result
+
+      reader.onload = function (e) {
+        this.profileImageUrl = e.target.result
         this.profileBgColor = '#FFFFFF'
-        // console.log(this.profileImageUrl)
-        // console.log(this.profileImageUrl.toString())
-      }
+      }.bind(this)
+      
+      reader.readAsDataURL(file)
+
       // reader.onerror = function (error) {
       //   console.log('Error: ', error)
       // }
